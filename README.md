@@ -70,8 +70,8 @@ Azt, hogy egy csomagnak melyik verziójára van szükséged, egy számmal kell m
 
 **NPM jelölések:** az NPM-nél lehet tenni egy jelet a verziszám elé, ami azt jelenti, hogy milyen frissítéseket engedsz meg a csomagoknál.
 
-* ~ : ez a tilde (altGr + 1), azt jelenti, hogy csak a patch-et engeded meg. Ha így adod meg a csomagot: "lodash": "~2.4.1", akkor ha kijön egy 2.4.7 verió, akkor frissülni fog, de ha a csomag a 2.5.1 verzióra lép, akkor már nem. Magyarul, csak az utolsó szám változhat.
-* ^ : ez a caret(altGr + 3 + space), azt jelenti, hogy a minor verziót lehet léptetni. Tehát a kisebb fejlesztések is jöhetnek. Ha így adod meg a csomagot: "lodash": "^2.4.1", akkor ha kijön egy 2.9.1 verió, akkor frissülni fog, de ha a csomag a 3.0.1 verzióra lép, akkor már nem. Magyarul, a második és a harmadik szám is változhat.
+* `~` : ez a tilde (altGr + 1), azt jelenti, hogy csak a patch-et engeded meg. Ha így adod meg a csomagot: "lodash": "~2.4.1", akkor ha kijön egy 2.4.7 verió, akkor frissülni fog, de ha a csomag a 2.5.1 verzióra lép, akkor már nem. Magyarul, csak az utolsó szám változhat.
+* `^` : ez a caret(altGr + 3 + space), azt jelenti, hogy a minor verziót lehet léptetni. Tehát a kisebb fejlesztések is jöhetnek. Ha így adod meg a csomagot: "lodash": "^2.4.1", akkor ha kijön egy 2.9.1 verió, akkor frissülni fog, de ha a csomag a 3.0.1 verzióra lép, akkor már nem. Magyarul, a második és a harmadik szám is változhat.
 
 #### Remove
 A remove utasítással lehet a csomagokat eltávolítani, és itt is megy a `--save` flag, azaz ha benne volt a csomag a package.json-ban, akkor onnan is eltávolítja:

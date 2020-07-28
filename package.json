@@ -1,0 +1,24 @@
+{
+  "name": "nodejs_242",
+  "version": "1.0.0",
+  "description": "Az NPM betűszó a Node Pacakge Manager rövidítése. A fejlesztők készítenek egy modult, ami egy mini alkalmazás és bárki integrálhatja a saját munkájába. Ezek gyakorlatilag egyszerű folder moulok, azaz a modul egy mappában van megvalósítva. Egy parancssori alkalmazás segítségével tudjuk telepíteni, eltávolítani, keresni ezeket a csomagokat (modulokat). Az NPM-et nem kell külön telepíteni, a NodeJS-szel együtt települ.",
+  "main": "app.js",
+  "dependencies": {
+    "lodash": "^4.17.19"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/droid242/nodejs_242.git"
+  },
+  "keywords": [],
+  "author": "droID242",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/droid242/nodejs_242/issues"
+  },
+  "homepage": "https://github.com/droid242/nodejs_242#readme"
+}
