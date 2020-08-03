@@ -5,6 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "bootstrap": "^4.5.0",
+    "font-awesome": "^4.7.0",
     "lodash": "^4.17.19"
   },
   "devDependencies": {},
