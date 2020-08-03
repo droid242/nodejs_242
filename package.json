@@ -4,6 +4,7 @@
   "description": "Az NPM betűszó a Node Pacakge Manager rövidítése. A fejlesztők készítenek egy modult, ami egy mini alkalmazás és bárki integrálhatja a saját munkájába. Ezek gyakorlatilag egyszerű folder moulok, azaz a modul egy mappában van megvalósítva. Egy parancssori alkalmazás segítségével tudjuk telepíteni, eltávolítani, keresni ezeket a csomagokat (modulokat). Az NPM-et nem kell külön telepíteni, a NodeJS-szel együtt települ.",
   "main": "app.js",
   "dependencies": {
+    "bootstrap": "^4.5.0",
     "lodash": "^4.17.19"
   },
   "devDependencies": {},

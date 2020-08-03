@@ -391,3 +391,12 @@ postPromise
 ```
 
 ***
+
+A szerver mindig a megfelelő metódus alapján tudja, hogy épp a `CRUD` melyik műveletét szeretném elvégezni:
+* Create: POST
+* Read: GET
+* Update: PUT
+* Delete: DELETE
+
+***
+
