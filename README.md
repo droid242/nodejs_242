@@ -400,3 +400,102 @@ A szerver mindig a megfelelő metódus alapján tudja, hogy épp a `CRUD` melyik
 
 ***
 
+### A DELETE metódus
+Ahogy a neve is mutatja, a DELETE metódus a HTTP szabványban az erőforrások törlésére van. Ha ilyen metódussal küldesz egy kérést a szervernek, akkor tudni fogja, hogy törölni szeretnél valamilyen adatot.
+
+#### Törlés a szerveren
+Adott valamilyen szerver, ami az adatokat szolgáltatja az alkalmazásodnak. Lépésről lépésre végigvezetlek a törlés folyamatán:
+
+Fetch kérés indítása a szerver felé:
+```
+let fetchOptions = {
+  method: 'DELETE',
+  mode: 'cors',
+  cache: 'no-cache',
+  credentials: 'same-origin'
+};
+fetch("http://localhost:3000/users/"+id, fetchOptions)
+  .then( resp => resp.json() )
+  .then( json => console.log(json) );
+```
+Lehetséges válaszok:
+* Az adott erőforrás nem létezik:
+* DELETE http://localhost:3000/users/1 404 (Not Found)
+* Sikeres törlés esetén üres válasz: {}
+
+### Biztonság
+Az adatok törlésénél körültekintően kell eljárnod. Az a minimum, hogy felteszel egy biztonsági kérdést, hogy tényleg törölni akarja-e az erőforrást a program kezelője?
+```
+if (confirm("Biztosan törli a felhasználót?")) {
+  fetch("http://localhost:3000/users/"+id, fetchOptions)
+    .then( resp => resp.json() )
+    .then( json => console.log(json) );
+}
+```
+A `confirm()` metódus true értékkel tér vissza, ha az okét választották, egyébként false a visszatérési érték. Ezt vizsgálom egy if kifejezéssel. Azért nincs else ága az if-nek, mivel ha arra kattintottak, hogy mésgem, akkor nem kell csinálni semmit.
+
+***
+
+### POST
+Ez feldolgozandó adatot küld fel a szerverre. Például HTML űrlap tartalmát, vagy egy fetch kérésben lévő adatokat. Az adatot az üzenettest tartalmazza.
+
+#### Új felhasználó létrehozása
+Ahhoz, hogy adatot küldj a szervernek, használhatod a POST vagy a PUT metódust is. Mindkettővel fel tudod tölteni az adatokat, a legtöbbször a szerver készítője mondja meg, hogy melyiket mikor használhatod. A mi példánkban a POST-ot használjuk a Create művelehtez, azaz új adatok létrehozásához.
+```
+let user = {
+  name: "Peter Big",
+  age: 21
+};
+let fetchOptions = {
+  method: 'POST',
+  mode: 'cors',
+  cache: 'no-cache',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  credentials: 'same-origin',
+  body: JSON.stringify( user )
+};
+fetch( "http://localhost:3000/users/", fetchOptions )
+  .then( resp => resp.json() )
+  .then( json => console.log(json) );
+```
+#### Fontos megjegyzések!
+Nézd meg jól a kódot, mert lényeges különbségek vannak benne egy GET kéréshez képest.
+* Létrehoztam egy user objektumot, ezt küldöm a szervernek.
+* A fetchOptions tartalmaz egy új tulajdonságot, headers a neve. Itt adtam meg, hogy json formátumban küldöm majd az adatokat, különben a szerver nem tudná feldolgozni őket.
+* body: ez a tulajdonság adja meg az adatokat, amelyeket a szervenek fogok küldeni. Mivel azt mondtam a fejlécben, hogy json lesz a formátum, ezért a user objektumot json formátumra kell alakítanom.
+* A válaszban az újonnan létrejött usert kapom vissza. Az id tulajdonságot nem szokták megadni, mivel azt a szerver általában automatikusan hozza létre. A válasz így néz ki az én esetemben: {name: "Peter Big", age: 21, id: 4}
+
+***
+
+### PUT kérés
+A PUT kérések a megadott erőforrást feltöltik a szerverre. Ebből a szempontból nagyon hasonlóak a POST -hoz.
+
+#### Adatok módosítása
+Mi most a PUT kérést fogjuk az adatmódosításra használni. Ezért a body-ban, el fogjuk küldeni a szervernek a módosítandó adatokat, az url pedig az id mezőt is tartalmazni fogja, hogy meg tudja állapítani a szerver, hogy melyik felhasználót szeretnénk módosítani.
+```
+let user = {
+  name: "Micky Big",
+  age: 21
+};
+let fetchOptions = {
+  method: 'PUT',
+  mode: 'cors',
+  cache: 'no-cache',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  credentials: 'same-origin',
+  body: JSON.stringify( user )
+};
+fetch( "http://localhost:3000/users/3", fetchOptions )
+  .then( resp => resp.json() )
+  .then( json => console.log(json) );
+```
+A frissítés két dologban tér el a létrehozástól:
+* A metódus PUT.
+* A fetch url végén meg kell adni az id-t, hogy tudja a szerver hogy melyik user-t kell módosítani.
+* Ezt a választ kaptam: {name: "Micky Big", age: 21, id: 3}, látod, az id változatlan, az adatok viszont módosultak.
+
+***
